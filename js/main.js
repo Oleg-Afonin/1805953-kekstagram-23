@@ -1,17 +1,58 @@
-// Функция, возвращающает случайное целое число из переданного диапазона включительно
-// Если параметры min и max равны, функция вернет равное им число
-// Функция вернет undefined, если: в заданный диапазон попадают числа меньше нуля; если max меньше min
-const getRandom = function(min, max) {
-  if(max-min >= 0 && min >= 0){
-    return Math.floor(Math.random() * (max - min+1) + min);
+const COMMENTS = [
+  'Всё отлично!',
+  'В целом всё неплохо. Но не всё.',
+  'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
+  'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
+  'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
+  'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
+];
+
+const FIRST_NAMES = [
+  'Анна',
+  'Мария',
+  'Виктория',
+  'Юлия',
+  'Анжела',
+  'Татьяна',
+];
+
+let counterComments = 0;
+
+const getRandomArrayElement = (elements) => elements[Math.abs(Math.round(Math.random() * elements.length - 1))];
+
+const getRandomPositiveInteger = (numberA, numberB) => {
+  const lower = Math.ceil(Math.min(Math.abs(numberA), Math.abs(numberB)));
+  const upper = Math.floor(Math.max(Math.abs(numberA), Math.abs(numberB)));
+  const result = Math.random() * (upper - lower + 1) + lower;
+  return Math.floor(result);
+};
+
+// Создаётся по 4 комментария к каждой фотографии
+const addComments = () => {
+  const commentsPhoto = [];
+  for (let i=1; i<=4; i++){
+
+    counterComments += 1;
+
+    const newComment = {
+      id: counterComments,
+      avatar: `img/avatar-${getRandomPositiveInteger(1,6)}.svg`,
+      message: getRandomArrayElement(COMMENTS),
+      name: getRandomArrayElement(FIRST_NAMES),
+    };
+    commentsPhoto[i] = newComment;
   }
+  return commentsPhoto;
 };
 
-getRandom(0, 8);
+const createPhotoDescription = (index) => ({
+  id: index,
+  url: `photos/${index}.jpg`,
+  description: 'Описание фотографии',
+  likes: getRandomPositiveInteger(15,200),
+  comments: addComments(),
+});
 
-// Функция для проверки максимальной длины строки.
-// Результат: true, если строка проходит по длине, и false — если не проходит
-const checkStringLength = function (string, limit) {
-  return string.length <= limit;
-};
-checkStringLength('Привет, как дела?', 140);
+for(let i=1; i<=25; i++) {
+  createPhotoDescription (i);
+}
