@@ -30,7 +30,7 @@ const getRandomPositiveInteger = (numberA, numberB) => {
 // Создаётся по 4 комментария к каждой фотографии
 const addComments = () => {
   const commentsPhoto = [];
-  for (let i=1; i<=4; i++){
+  for (let index=1; index<=4; index++){
 
     counterComments += 1;
 
@@ -40,19 +40,19 @@ const addComments = () => {
       message: getRandomArrayElement(COMMENTS),
       name: getRandomArrayElement(FIRST_NAMES),
     };
-    commentsPhoto[i] = newComment;
+    commentsPhoto[index] = newComment;
   }
   return commentsPhoto;
 };
 
-const createPhotoDescription = (index) => ({
-  id: index,
-  url: `photos/${index}.jpg`,
+const createPhotoDescription = (indexPhoto) => ({
+  id: indexPhoto,
+  url: `photos/${indexPhoto}.jpg`,
   description: 'Описание фотографии',
   likes: getRandomPositiveInteger(15,200),
   comments: addComments(),
 });
 
-for(let i=1; i<=25; i++) {
-  createPhotoDescription (i);
+for(let index=1; index<=25; index++) {
+  createPhotoDescription (index);
 }
