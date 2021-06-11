@@ -48,5 +48,5 @@ const createPhotoDescription = (indexPhoto) => ({
 });
 
 for(let index=0; index<25; index++) {
-  console.log(createPhotoDescription (index+1));
+  createPhotoDescription (index+1);
 }
