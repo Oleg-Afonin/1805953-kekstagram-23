@@ -21,7 +21,7 @@ const FIRST_NAMES = [
 let counterComments = 0;
 
 
-// Создаётся по 4 комментария к каждой фотографии
+// Добавляется по 4 комментария к каждой фотографии
 const getComments = () => {
   const comments = [];
   for (let index=0; index<4; index++){
@@ -39,6 +39,7 @@ const getComments = () => {
   return comments;
 };
 
+// Создаётся описание к каждой фотографии
 const createPhotoDescription = (indexPhoto) => ({
   id: indexPhoto,
   url: `photos/${indexPhoto}.jpg`,
@@ -47,6 +48,10 @@ const createPhotoDescription = (indexPhoto) => ({
   comments: getComments(),
 });
 
-for(let index=0; index<25; index++) {
-  createPhotoDescription (index+1);
-}
+const generatingComments = (numberOfPhotos) => {
+  for(let index=0; index<numberOfPhotos; index++) {
+    createPhotoDescription(index+1);
+  }
+};
+
+export {generatingComments};
