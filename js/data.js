@@ -24,8 +24,8 @@ let counterComments = 0;
 // Добавляется по 4 комментария к каждой фотографии
 const getComments = () => {
   const comments = [];
-  for (let index=0; index<4; index++){
 
+  for (let index=0; index<4; index++){
     counterComments += 1;
 
     const newComment = {
@@ -40,18 +40,21 @@ const getComments = () => {
 };
 
 // Создаётся описание к каждой фотографии
-const createPhotoDescription = (indexPhoto) => ({
-  id: indexPhoto,
-  url: `photos/${indexPhoto}.jpg`,
-  description: 'Описание фотографии',
-  likes: getRandomPositiveInteger(15,200),
-  comments: getComments(),
-});
-
 const generatingComments = (numberOfPhotos) => {
-  for(let index=0; index<numberOfPhotos; index++) {
-    createPhotoDescription(index+1);
+  const photoDescriptions = [];
+
+  for(let indexPhoto=0; indexPhoto<numberOfPhotos; indexPhoto++) {
+
+    const createPhotoDescription = {
+      id: indexPhoto+1,
+      url: `photos/${indexPhoto+1}.jpg`,
+      description: 'Описание фотографии',
+      likes: getRandomPositiveInteger(15,200),
+      comments: getComments(),
+    };
+    photoDescriptions.push(createPhotoDescription);
   }
+  return photoDescriptions;
 };
 
 export {generatingComments};
