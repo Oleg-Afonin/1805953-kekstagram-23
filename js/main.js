@@ -1,4 +1,6 @@
-import {generatingComments} from './data.js';
+import {createDescription} from './data.js';
 
 // Указать количество фотографий
-generatingComments(25);
+createDescription(25);
+
+export {createDescription};
