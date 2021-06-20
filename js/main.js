@@ -1,4 +1,4 @@
-import {generatingComments} from './data.js';
+import {createElements} from './frames.js';
 
 // Указать количество фотографий
-generatingComments(25);
+createElements();

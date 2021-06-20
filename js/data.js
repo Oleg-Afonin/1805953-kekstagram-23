@@ -1,5 +1,6 @@
 import {getRandomPositiveInteger} from './util.js';
 
+
 const COMMENTS = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
@@ -40,21 +41,21 @@ const getComments = () => {
 };
 
 // Создаётся описание к каждой фотографии
-const generatingComments = (numberOfPhotos) => {
+const createDescriptions = (numberOfPhotos) => {
   const photoDescriptions = [];
 
   for(let indexPhoto=0; indexPhoto<numberOfPhotos; indexPhoto++) {
 
-    const createPhotoDescription = {
+    const photoDescription = {
       id: indexPhoto+1,
       url: `photos/${indexPhoto+1}.jpg`,
       description: 'Описание фотографии',
       likes: getRandomPositiveInteger(15,200),
       comments: getComments(),
     };
-    photoDescriptions.push(createPhotoDescription);
+    photoDescriptions.push(photoDescription);
   }
   return photoDescriptions;
 };
 
-export {generatingComments};
+export {createDescriptions};
