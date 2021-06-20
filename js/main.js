@@ -1,6 +1,7 @@
-import {createDescription} from './data.js';
+//import {createDescriptions} from './data.js';
+import {createElements} from './frames.js';
 
 // Указать количество фотографий
-createDescription(25);
+createElements();
 
-export {createDescription};
+export {createElements};

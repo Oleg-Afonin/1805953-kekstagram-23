@@ -1,4 +1,4 @@
-import {createDescription} from './data.js';
+import {createDescriptions} from './data.js';
 //Шаблон
 const pictureContent = document.querySelector('#picture').content;
 const picture = pictureContent.querySelector('a');
@@ -8,10 +8,11 @@ const picturesList = document.querySelector('.pictures');
 
 const picturesListFragment = document.createDocumentFragment();
 
-const similarFragment = createDescription();
+const similarPictures = createDescriptions(25);
 
 // Для каждой фотографии вставляется элемент из шаблона
-similarFragment.forEach(({url, likes, comments}) => {
+const createElements = function(){
+similarPictures.forEach(({url, likes, comments}) => {
   const newElement = picture.cloneNode(true);
 
   newElement.querySelector('.picture__img').src = url;
@@ -21,4 +22,7 @@ similarFragment.forEach(({url, likes, comments}) => {
   picturesListFragment.appendChild(newElement);
 });
 
-picturesList.appendChild(picturesListFragment);
+ picturesList.appendChild(picturesListFragment);
+};
+
+export {createElements};
